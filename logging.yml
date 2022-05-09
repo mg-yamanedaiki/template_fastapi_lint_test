@@ -1,0 +1,29 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  standard:
+    format: "%(levelname)s: %(asctime)s %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: standard
+    stream: ext://sys.stdout
+  file:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: standard
+    filename: ./docker/app/log/.log
+    when: MIDNIGHT
+    backupCount: 7
+    encoding: utf-8
+
+loggers:
+  uvicorn:
+    error:
+      propagate: true
+
+root:
+  level: INFO
+  handlers: [console, file]
+  propagate: no

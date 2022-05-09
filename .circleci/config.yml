@@ -1,0 +1,27 @@
+version: 2.1
+
+executors:
+  ubuntu:
+    machine:
+      image: ubuntu-2004:current
+jobs:
+  deploy-dev:
+    executor: ubuntu
+    shell: /bin/bash
+    working_directory: ~/app
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - add_ssh_keys
+      - run:
+          name: SSHで最新状態を適用
+          command: >
+            ssh ${USER_NAME}@${HOST_NAME} "cd ~/workspace/atd_00_template_api_python && ./scripts/deploy-develop.sh"
+workflows:
+  deploy:
+    jobs:
+      - deploy-dev:
+          filters:
+            branches:
+              only:
+                - develop

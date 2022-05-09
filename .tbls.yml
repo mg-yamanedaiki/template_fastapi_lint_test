@@ -1,0 +1,8 @@
+# DSN (Database Source Name) to connect databasef
+dsn: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:3306/${MYSQL_DATABASE}
+# Path to generate document
+# Default is `dbdoc`
+docPath: docs/db
+
+exclude:
+  - alembic_version
