@@ -1,29 +1,33 @@
 {
-  "name": "atd_00_template_api_python",
+  "name": "template_fastapi_python",
   "workspaceFolder": "/root/app",
   "dockerComposeFile": [
     "../compose.yml"
   ],
   "service": "app",
-  "settings": {
-    "python.defaultInterpreterPath": ".venv/bin/python3.9",
-    "python.autoComplete.extraPaths": [
-      ".venv/lib/python3.9/site-packages"
-    ],
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.mypyEnabled": true,
-    "python.linting.lintOnSave": true,
-    "python.formatting.provider": "black",
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": ".venv/bin/python3.9",
+        "python.autoComplete.extraPaths": [
+          ".venv/lib/python3.9/site-packages"
+        ],
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.linting.lintOnSave": true,
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        }
+      },
+      "extensions": [
+        "editorconfig.editorconfig",
+        "eamodio.gitlens",
+        "ms-python.python",
+        "yzhang.markdown-all-in-one"
+      ]
     }
-  },
-  "extensions": [
-    "editorconfig.editorconfig",
-    "eamodio.gitlens",
-    "ms-python.python",
-    "yzhang.markdown-all-in-one"
-  ]
+  }
 }
