@@ -10,7 +10,14 @@ from invoke import task
 def serve(c, port=8000, prod=False, path="app.main:app"):
     """サーバーを起動"""
     if prod:
-        run(f"gunicorn {path} -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:{port}")
+        run(
+            [
+                f"gunicorn {path}",
+                "-w 4",
+                "-k app.worker.Worker",
+                f"-b 0.0.0.0:{port}",
+            ]
+        )
     else:
         run(
             [
