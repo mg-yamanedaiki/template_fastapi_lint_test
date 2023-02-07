@@ -1,4 +1,4 @@
-# atd_00_template_api_python
+# template_fastapi_python
 
 [DB構成](docs/db/README.md)
 

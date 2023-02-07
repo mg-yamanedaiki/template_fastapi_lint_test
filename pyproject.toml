@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "atd_00_template_api_python"
+name = "template_fastapi_python"
 version = "0.0.1"
 description = ""
 readme = "README.md"
