@@ -89,7 +89,7 @@ def clear(c, all=False, mypy=False, pytest=False):
 def test(
     c,
     all=False,
-    file="",
+    file="tests/app/",
     verbose=False,
     duration=False,
     coverage=False,
@@ -98,7 +98,7 @@ def test(
     cmd = [
         "ENV=test",
         "poetry run pytest",
-        f"tests/app/{file}",
+        file,
         "--log-cli-level=DEBUG",
     ]
     if all or duration:
