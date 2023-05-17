@@ -9,7 +9,7 @@ executors:
       - image: cimg/python:3.9.12
 
 jobs:
- lint:
+  lint:
     executor: python
     shell: /bin/bash
     working_directory: ~/app
