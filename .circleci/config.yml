@@ -31,6 +31,8 @@ jobs:
           name: docker-compose exec app poetry install --no-ansi
           command: docker-compose exec app poetry install --no-ansi
       - run:
+          name: docker-compose exec app python --version
+      - run:
           name: docker-compose exec app poetry shell
           command: docker-compose exec app poetry shell
 
