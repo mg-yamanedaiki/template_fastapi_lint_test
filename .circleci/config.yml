@@ -54,7 +54,7 @@ jobs:
       - run:
           name: テスト実行
           command: |
-            docker-compose exec -T app bash
+            docker-compose exec app bash
             ENV=test
             poetry run pytest tests/app/ --log-cli-level=DEBUG
             exit
