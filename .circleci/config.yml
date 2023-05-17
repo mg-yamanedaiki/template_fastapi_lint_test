@@ -53,12 +53,9 @@ jobs:
       - run:
           name: poetry install
           command: poetry install
-      # - run:
-      #     name: poetry run inv lint
-      #     command: poetry run mypy app
       - run:
-          name: poetry run inv lint
-          command: poetry run inv lint
+          name: リント実行
+          command: poetry run mypy app
 
   deploy-dev:
     executor: ubuntu
