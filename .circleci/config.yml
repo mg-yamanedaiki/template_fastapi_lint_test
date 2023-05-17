@@ -22,10 +22,10 @@ jobs:
           name: ls
           command: ls
       - run:
-          name: docker-compose build test
+          name: docker-compose build
           command: docker-compose build
       - run:
-          name: docker-compose up
+          name: docker-compose up -d
           command: docker-compose up -d
       - run:
           name: docker-compose ps
@@ -33,15 +33,15 @@ jobs:
       - run:
           name: docker-compose exec app poetry --version
           command: docker-compose exec app poetry --version
-      # - run:
-      #     name: docker-compose exec app poetry install
-      #     command: docker-compose exec app poetry install
       - run:
-          name: ls a
+          name: docker-compose exec app poetry install --no-ansi
+          command: docker-compose exec app poetry install --no-ansi
+      - run:
+          name: ls
           command: ls
-      # - run:
-      #     name: 仮想環境に入る
-      #     command: poetry shell
+      - run:
+          name: 仮想環境に入る
+          command: dokcer-compose exec poetry shell
       - persist_to_workspace:
           root: .
           paths:
