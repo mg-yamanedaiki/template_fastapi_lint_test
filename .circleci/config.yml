@@ -34,8 +34,14 @@ jobs:
           name: docker-compose exec app python --version
           command: docker-compose exec app python --version
       - run:
-          name: docker-compose exec app poetry shell
-          command: docker-compose exec app poetry shell
+          name: docker-compose exec app
+          command: docker-compose exec app
+      - run:
+          name: ls
+          command: ls
+      # - run:
+      #     name: docker-compose exec app poetry shell
+      #     command: docker-compose exec app poetry shell
 
   lint:
     executor: ubuntu
