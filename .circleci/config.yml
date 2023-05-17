@@ -31,16 +31,14 @@ jobs:
           name: docker-compose ps
           command: docker-compose ps
       - run:
-          name: パッケージのインストール
-          command: |
-            docker-compose exec app bash && \
-            poetry install
+          name: docker-compose exec app bash
+          command: docker-compose exec app bash
       - run:
           name: ls
           command: ls
-      - run:
-          name: 仮想環境に入る
-          command: poetry shell
+      # - run:
+      #     name: 仮想環境に入る
+      #     command: poetry shell
       - persist_to_workspace:
           root: .
           paths:
