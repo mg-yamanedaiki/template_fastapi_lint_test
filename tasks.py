@@ -146,4 +146,4 @@ def run(cmd: Union[str, list], out: bool = True) -> subprocess.CompletedProcess[
     if out:
         print(f"\033[32mrun cmd\033[0m: {inner_cmd}")
 
-    return subprocess.run(inner_cmd, shell=True)
+    return subprocess.run(inner_cmd, shell=True, capture_output=True, text=True)
