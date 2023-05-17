@@ -36,9 +36,13 @@ jobs:
       - run:
           name: ls
           command: ls
-      - run:
-          name: リント実行
-          command: docker-compose exec app poetry run inv lint
+      # - run:
+      #     name: リント実行
+      #     command: docker-compose exec app poetry run inv lint
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       # - run:
       #     name: docker-compose exec app poetry shell
       #     command: docker-compose exec app poetry shell
@@ -55,8 +59,7 @@ jobs:
           command: docker-compose ps
       - run:
           name: リント実行
-          command: |
-            docker-compose exec app poetry run inv lint
+          command: docker-compose exec app poetry run inv lint
 
   deploy-dev:
     executor: ubuntu
