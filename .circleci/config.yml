@@ -34,7 +34,7 @@ jobs:
           name: docker-compose exec app bash
           command: docker-compose exec app bash
       - run:
-          name: ls
+          name: ls a
           command: ls
       # - run:
       #     name: 仮想環境に入る
