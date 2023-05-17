@@ -41,11 +41,7 @@ jobs:
           command: ls
       - run:
           name: 仮想環境に入る
-          command: dokcer-compose exec poetry shell
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+          command: docker-compose exec poetry shell
 
   lint:
     executor: ubuntu
@@ -55,14 +51,13 @@ jobs:
       - attach_workspace:
           at: ~/app
       - run:
+          name: docker-compose ps
+          command: docker-compose ps
+      - run:
           name: リント実行
           command: |
             docker-compose exec app bash poetry shell && \
             inv lint
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
 
   deploy-dev:
     executor: ubuntu
