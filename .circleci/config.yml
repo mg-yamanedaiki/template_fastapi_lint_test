@@ -10,38 +10,33 @@ executors:
 
 jobs:
   setup:
-    executor: python
+    executor: ubuntu
     shell: /bin/bash
     working_directory: ~/app
     steps:
       - checkout
-      # - run:
-      #     name: docker起動
-      #     command: |
-      #       docker compose up -d && \
-      #       docker coompose exec app bash
-
-
-      # - run:
-      #     name: poetryのインストール
-      #     command: |
-      #       pip install --upgrade pip && \
-      #       pip install poetry && \
-      #       poetry config virtualenvs.in-project true && \
-      #       poetry config virtualenvs.create true
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: docker compose build
+          command: docker compose build
+      - run:
+          name: docker compose up
+          command: docker compose up -d
       - run:
           name: パッケージのインストール
-          command: poetry install
+          command: docker compose exec app bash poetry install
       - run:
           name: 仮想環境に入る
-          command: poetry shell
+          command: docker compose exec app bash poetry shell
       - persist_to_workspace:
           root: .
           paths:
             - .
 
   lint:
-    executor: python
+    executor: ubuntu
     shell: /bin/bash
     working_directory: ~/app
     steps:
