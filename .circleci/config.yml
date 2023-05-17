@@ -6,7 +6,7 @@ executors:
       image: ubuntu-2004:current
   python:
     docker:
-      - image: cimg/python:3.9.16
+      - image: cimg/python:3.9.12
 
 jobs:
   setup:
@@ -43,23 +43,19 @@ jobs:
           root: .
           paths:
             - .
-      # - run:
-      #     name: docker-compose exec app poetry shell
-      #     command: docker-compose exec app poetry shell
 
   lint:
-    executor: ubuntu
+    executor: python
     shell: /bin/bash
     working_directory: ~/app
     steps:
-      - attach_workspace:
-          at: ~/app
+      - checkout
       - run:
-          name: docker-compose ps
-          command: docker-compose ps
+          name: poetry install
+          command: poetry install
       - run:
-          name: リント実行
-          command: docker-compose exec app poetry run inv lint
+          name: poetry run inv lint
+          command: poetry run inv lint
 
   deploy-dev:
     executor: ubuntu
@@ -76,16 +72,16 @@ jobs:
 workflows:
   lint_deploy:
     jobs:
-      - setup:
-          filters:
-            branches:
-              ignore:
-               - main
-               - master
-               - develop
+      # - setup:
+      #     filters:
+      #       branches:
+      #         ignore:
+      #           - main
+      #           - master
+      #           - develop
       - lint:
-          requires:
-            - setup
+          # requires:
+          #   - setup
           filters:
             branches:
               ignore:
