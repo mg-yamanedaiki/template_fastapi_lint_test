@@ -15,13 +15,20 @@ jobs:
     working_directory: ~/app
     steps:
       - checkout
-      - run:
-          name: poetryのインストール
-          command: |
-            pip install --upgrade pip && \
-            pip install poetry && \
-            poetry config virtualenvs.in-project true && \
-            poetry config virtualenvs.create true
+      # - run:
+      #     name: docker起動
+      #     command: |
+      #       docker compose up -d && \
+      #       docker coompose exec app bash
+
+
+      # - run:
+      #     name: poetryのインストール
+      #     command: |
+      #       pip install --upgrade pip && \
+      #       pip install poetry && \
+      #       poetry config virtualenvs.in-project true && \
+      #       poetry config virtualenvs.create true
       - run:
           name: パッケージのインストール
           command: poetry install
