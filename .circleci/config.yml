@@ -16,12 +16,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-      - run:
           name: docker-compose build
           command: docker-compose build
       - run:
@@ -37,11 +31,8 @@ jobs:
           name: docker-compose exec app poetry install --no-ansi
           command: docker-compose exec app poetry install --no-ansi
       - run:
-          name: ls
-          command: ls
-      - run:
-          name: 仮想環境に入る
-          command: docker-compose exec poetry shell
+          name: docker-compose exec app poetry shell
+          command: docker-compose exec app poetry shell
 
   lint:
     executor: ubuntu
