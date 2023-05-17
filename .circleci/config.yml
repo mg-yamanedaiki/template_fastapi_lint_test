@@ -34,9 +34,6 @@ jobs:
           name: docker-compose exec app python --version
           command: docker-compose exec app python --version
       - run:
-          name: docker-compose exec app /bin/bash aa
-          command: docker-compose exec app /bin/bash
-      - run:
           name: ls
           command: ls
       # - run:
@@ -56,8 +53,7 @@ jobs:
       - run:
           name: リント実行
           command: |
-            docker-compose exec app bash poetry shell && \
-            inv lint
+            docker-compose exec app poetry run inv lint
 
   deploy-dev:
     executor: ubuntu
