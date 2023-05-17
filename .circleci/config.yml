@@ -49,8 +49,15 @@ jobs:
       #     name: テスト実行
       #     command: docker-compose exec app poetry run inv test
       - run:
+          name: env
+          command: echo $ENV
+      - run:
           name: テスト実行
-          command: docker-compose exec app ENV=test poetry run pytest tests/app/ --log-cli-level=DEBUG
+          command: |
+            docker-compose exec -T app bash
+            ENV=test
+            poetry run pytest tests/app/ --log-cli-level=DEBUG
+            exit
 
   deploy-dev:
     executor: ubuntu
