@@ -9,6 +9,18 @@ executors:
       - image: cimg/python:3.9.12
 
 jobs:
+ lint:
+    executor: python
+    shell: /bin/bash
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: poetry install
+          command: poetry install
+      - run:
+          name: リント実行
+          command: poetry run mypy app
   test:
     executor: ubuntu
     shell: /bin/bash
@@ -30,19 +42,12 @@ jobs:
       - run:
           name: シーダー実行
           command: docker-compose exec app poetry run inv seed
-
-  lint:
-    executor: python
-    shell: /bin/bash
-    working_directory: ~/app
-    steps:
-      - checkout
       - run:
-          name: poetry install
-          command: poetry install
+          name: init test
+          command: docker-compose exec app poetry run inv test-init
       - run:
-          name: リント実行
-          command: poetry run mypy app
+          name: テスト実行
+          command: docker-compose exec app poetry run inv test
 
   deploy-dev:
     executor: ubuntu
