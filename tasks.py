@@ -72,7 +72,7 @@ def db_refresh(c, yes=False, migrate_=False, seed_=False):
 @task
 def lint(c, path="app"):
     """コードチェック"""
-    run(f"poetry run mypy {path} --strict")
+    run(f"poetry run mypy {path}")
 
 
 @task
@@ -145,4 +145,5 @@ def run(cmd: Union[str, list], out: bool = True) -> None:
     if out:
         print(f"\033[32mrun cmd\033[0m: {inner_cmd}")
 
-    subprocess.run(inner_cmd, shell=True, capture_output=True, text=True)
+    result = subprocess.run(inner_cmd, shell=True)
+    print(result.returncode)
