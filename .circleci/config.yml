@@ -9,7 +9,7 @@ executors:
       - image: cimg/python:3.9.12
 
 jobs:
-  setup:
+  test:
     executor: ubuntu
     shell: /bin/bash
     working_directory: ~/app
@@ -36,9 +36,9 @@ jobs:
       - run:
           name: ls -l
           command: ls -l
-      # - run:
-      #     name: リント実行
-      #     command: docker-compose exec app poetry run inv lint
+      - run:
+          name: テスト実行
+          command: docker-compose exec app poetry run inv lint
       - persist_to_workspace:
           root: .
           paths:
@@ -55,7 +55,7 @@ jobs:
           command: poetry install
       - run:
           name: poetry run inv lint
-          command: poetry run inv lint
+          command: poetry run inv lint || echo "mypy failed" && exit 1
 
   deploy-dev:
     executor: ubuntu
