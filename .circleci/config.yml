@@ -36,6 +36,9 @@ jobs:
       - run:
           name: ls
           command: ls
+      - run:
+          name: リント実行
+          command: docker-compose exec app poetry run inv lint
       # - run:
       #     name: docker-compose exec app poetry shell
       #     command: docker-compose exec app poetry shell
