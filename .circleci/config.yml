@@ -4,9 +4,13 @@ executors:
   ubuntu:
     machine:
       image: ubuntu-2004:current
+  python:
+    docker:
+      - image: cimg/python:3.9.16
+
 jobs:
   setup:
-    executor: ubuntu
+    executor: python
     shell: /bin/bash
     working_directory: ~/app
     steps:
@@ -30,7 +34,7 @@ jobs:
             - .
 
   lint:
-    executor: ubuntu
+    executor: python
     shell: /bin/bash
     working_directory: ~/app
     steps:
