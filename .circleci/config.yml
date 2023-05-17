@@ -23,16 +23,24 @@ jobs:
           command: ls
       - run:
           name: docker-compose build
-          command: docker compose build
+          command: docker-compose build
       - run:
           name: docker-compose up
-          command: docker compose up -d
+          command: docker-compose up -d
+      - run:
+          name: docker-compose ps
+          command: docker-compose ps
       - run:
           name: パッケージのインストール
-          command: docker-compose exec app bash poetry install
+          command: |
+            docker-compose exec app bash && \
+            poetry install
+      - run:
+          name: ls
+          command: ls
       - run:
           name: 仮想環境に入る
-          command: docker-compose exec app bash poetry shell
+          command: poetry shell
       - persist_to_workspace:
           root: .
           paths:
