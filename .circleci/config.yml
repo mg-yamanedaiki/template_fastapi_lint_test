@@ -20,7 +20,7 @@ jobs:
           command: poetry install
       - run:
           name: リント実行
-          command: poetry run mypy app
+          command: poetry run inv lint
   test:
     executor: ubuntu
     shell: /bin/bash
