@@ -132,7 +132,7 @@ def test_init(c):
     run("ENV=test inv migrate")
 
 
-def run(cmd: Union[str, list], out: bool = True) -> CompletedProcess[bytes]:
+def run(cmd: Union[str, list], out: bool = True) -> subprocess.CompletedProcess[bytes]:
     cmd_type = type(cmd)
 
     inner_cmd = ""
