@@ -34,8 +34,8 @@ jobs:
           name: docker-compose exec app python --version
           command: docker-compose exec app python --version
       - run:
-          name: docker-compose exec app
-          command: docker-compose exec app
+          name: docker-compose exec app /bin/bash
+          command: docker-compose exec app /bin/bash
       - run:
           name: ls
           command: ls
