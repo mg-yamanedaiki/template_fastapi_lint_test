@@ -32,7 +32,7 @@ jobs:
           command: docker-compose ps
       - run:
           name: docker-compose exec app bash
-          command: docker-compose exec app bash
+          command: docker-compose exec app poetry install
       - run:
           name: ls a
           command: ls
