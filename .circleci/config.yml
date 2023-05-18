@@ -37,6 +37,9 @@ jobs:
           name: docker-compose exec app poetry install --no-ansi
           command: docker-compose exec app poetry install --no-ansi
       - run:
+          name: docker-compose ps
+          command: docker-compose ps
+      - run:
           name: マイグレーション実行
           command: docker-compose exec app poetry run inv migrate
       - run:
