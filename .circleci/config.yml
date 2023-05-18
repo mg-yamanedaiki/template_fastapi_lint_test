@@ -40,6 +40,9 @@ jobs:
           name: docker-compose ps
           command: docker-compose ps
       - run:
+          name: docker-compose version
+          command: docker-compose version
+      - run:
           name: マイグレーション実行
           command: docker-compose exec app poetry run inv migrate
       - run:
