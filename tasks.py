@@ -1,6 +1,7 @@
 # type: ignore
 
 import subprocess
+import sys
 from typing import Union
 
 from invoke import task
@@ -145,6 +146,7 @@ def run(cmd: Union[str, list], out: bool = True) -> None:
     if out:
         print(f"\033[32mrun cmd\033[0m: {inner_cmd}")
 
-    result = subprocess.run(inner_cmd, shell=True, check=True)
+    result = subprocess.run(inner_cmd, shell=True)
+    sys.exit(result.returncode)
     # if result.returncode != 0:
     #     raise Exception(f"{inner_cmd} failed with exit code {result.returncode}")
