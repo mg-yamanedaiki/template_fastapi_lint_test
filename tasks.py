@@ -147,6 +147,5 @@ def run(cmd: Union[str, list], out: bool = True) -> None:
         print(f"\033[32mrun cmd\033[0m: {inner_cmd}")
 
     result = subprocess.run(inner_cmd, shell=True)
-    sys.exit(result.returncode)
-    # if result.returncode != 0:
-    #     raise Exception(f"{inner_cmd} failed with exit code {result.returncode}")
+    if result.returncode != 0:
+        sys.exit(result.returncode)
