@@ -1,6 +1,7 @@
 # type: ignore
 
 import subprocess
+import sys
 from typing import Union
 
 from invoke import task
@@ -124,14 +125,14 @@ def test_init(c):
     TEST_DB_NAME = "atd_00_template_api_python_test"
 
     login_cmd = "mysql -h $MYSQL_HOST -u root -p$MYSQL_PASSWORD"
-    run(f'echo "drop database {TEST_DB_NAME};" | {login_cmd}')
+    run(f'echo "drop database {TEST_DB_NAME};" | {login_cmd}', ignore_error=True)
     print("[Can't drop database]←のエラーが出ても気にしなくて大丈夫です")
     run(f'echo "create database {TEST_DB_NAME};" | {login_cmd}')
 
     run("ENV=test inv migrate")
 
 
-def run(cmd: Union[str, list], out: bool = True) -> None:
+def run(cmd: Union[str, list], out: bool = True, ignore_error: bool = False) -> None:
     cmd_type = type(cmd)
 
     inner_cmd = ""
@@ -145,4 +146,9 @@ def run(cmd: Union[str, list], out: bool = True) -> None:
     if out:
         print(f"\033[32mrun cmd\033[0m: {inner_cmd}")
 
-    subprocess.run(inner_cmd, shell=True)
+    result = subprocess.run(inner_cmd, shell=True)
+
+    if ignore_error:
+        return
+    if result.returncode != 0:
+        sys.exit(result.returncode)
