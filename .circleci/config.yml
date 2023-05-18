@@ -19,7 +19,7 @@ jobs:
           name: poetry install
           command: poetry install
       - run:
-          name: リント実行
+          name: inv lint
           command: poetry run inv lint
   test:
     executor: ubuntu
@@ -37,22 +37,16 @@ jobs:
           name: docker compose exec app poetry install --no-ansi
           command: docker compose exec app poetry install --no-ansi
       - run:
-          name: docker compose ps
-          command: docker compose ps
-      - run:
-          name: docker compose version
-          command: docker compose version
-      - run:
-          name: マイグレーション実行
+          name: inv migrate
           command: docker compose exec app poetry run inv migrate
       - run:
-          name: シーダー実行
+          name: inv seed
           command: docker compose exec app poetry run inv seed
       - run:
-          name: test init
+          name: inv test-init
           command: docker compose exec app poetry run inv test-init
       - run:
-          name: テスト実行
+          name: inv test
           command: docker compose exec app poetry run inv test
 
   deploy-dev:
