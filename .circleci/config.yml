@@ -28,32 +28,32 @@ jobs:
     steps:
       - checkout
       - run:
-          name: docker-compose build
-          command: docker-compose build
+          name: docker compose build
+          command: docker compose build
       - run:
-          name: docker-compose up -d
-          command: docker-compose up -d
+          name: docker compose up -d
+          command: docker compose up -d
       - run:
-          name: docker-compose exec app poetry install --no-ansi
-          command: docker-compose exec app poetry install --no-ansi
+          name: docker compose exec app poetry install --no-ansi
+          command: docker compose exec app poetry install --no-ansi
       - run:
-          name: docker-compose ps
-          command: docker-compose ps
+          name: docker compose ps
+          command: docker compose ps
       - run:
-          name: docker-compose version
-          command: docker-compose version
+          name: docker compose version
+          command: docker compose version
       - run:
           name: マイグレーション実行
-          command: docker-compose exec app poetry run inv migrate
+          command: docker compose exec app poetry run inv migrate
       - run:
           name: シーダー実行
-          command: docker-compose exec app poetry run inv seed
+          command: docker compose exec app poetry run inv seed
       - run:
-          name: init test
-          command: docker-compose exec app poetry run inv test-init
+          name: test init
+          command: docker compose exec app poetry run inv test-init
       - run:
           name: テスト実行
-          command: docker-compose exec app poetry run inv test
+          command: docker compose exec app poetry run inv test
 
   deploy-dev:
     executor: ubuntu
