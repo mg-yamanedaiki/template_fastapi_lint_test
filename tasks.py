@@ -74,6 +74,8 @@ def db_refresh(c, yes=False, migrate_=False, seed_=False):
 def lint(c, path="app"):
     """コードチェック"""
     run(f"poetry run mypy {path}")
+    run(f"poetry run flake8 {path}")
+    run(f"poetry run black --check --diff {path}")
 
 
 @task
