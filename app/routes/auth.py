@@ -1,8 +1,10 @@
 from datetime import datetime
 
-from cognito_pyauth.exceptions import (NotAuthorizedException,
-                                       UsernameExistsException,
-                                       UserNotConfirmedException)
+from cognito_pyauth.exceptions import (
+    NotAuthorizedException,
+    UsernameExistsException,
+    UserNotConfirmedException,
+)
 from cognito_pyauth.schemas import RefreshTokenResult
 from fastapi import APIRouter, Depends, status
 
@@ -11,10 +13,16 @@ from app.constants import HTTPExceptionType
 from app.database import Session, get_db
 from app.exceptions import HTTPException
 from app.models import User
-from app.schemas import (AuthResponse, ConfirmSignupRequest, LoginRequest,
-                         RefreshTokenRequest, RefreshTokenResponse,
-                         ResendConfirmationCodeRequest, SignupRequest,
-                         UserResponse)
+from app.schemas import (
+    AuthResponse,
+    ConfirmSignupRequest,
+    LoginRequest,
+    RefreshTokenRequest,
+    RefreshTokenResponse,
+    ResendConfirmationCodeRequest,
+    SignupRequest,
+    UserResponse,
+)
 
 router = APIRouter()
 
