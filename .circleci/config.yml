@@ -16,6 +16,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: poetry --version
+          command: poetry --version
+      - run:
           name: poetry install
           command: poetry install
       - run:
