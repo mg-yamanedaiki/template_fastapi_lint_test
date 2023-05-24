@@ -19,8 +19,8 @@ jobs:
           name: poetry --version
           command: poetry --version
       - run:
-          name: poetry self update
-          command: poetry self update
+          name: poetry update 1.4.2
+          command: poetry update 1.4.2
       - run:
           name: poetry --version
           command: poetry --version
