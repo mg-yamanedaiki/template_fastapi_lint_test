@@ -19,6 +19,12 @@ jobs:
           name: poetry --version
           command: poetry --version
       - run:
+          name: poetry lock --no-update
+          command: poetry lock --no-update
+      - run:
+          name: poetry --version
+          command: poetry --version
+      - run:
           name: poetry install
           command: poetry install
       - run:
